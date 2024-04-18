@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7332553067218765167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2236185811514668385}
+  - component: {fileID: 2710316015241227823}
+  m_Layer: 0
+  m_Name: Grupo5Facil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2236185811514668385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7332553067218765167}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.8060242, y: -0.9353707, z: 10.679118}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2710316015241227823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7332553067218765167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb6c53808d36ab47be672d621f62af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image1: {fileID: 21300000, guid: c3f49281926abe04ba53fcaa2fb12028, type: 3}
+  image2: {fileID: 21300000, guid: a1ceb14d9fcf45f428c5482b0bb7f24b, type: 3}
+  image3: {fileID: 21300000, guid: ed9266d46e82fa143b2256657c1b2bf9, type: 3}
+  image4: {fileID: 21300000, guid: 06c5675c57be10743902af621b3a394a, type: 3}
+  image5: {fileID: 21300000, guid: 629948da909839b4481f256f47db2aec, type: 3}
+  image6: {fileID: 21300000, guid: b9064b691d26d38469119cb5b738b668, type: 3}
+  image7: {fileID: 21300000, guid: 3118f204246011949be02f175afb38d7, type: 3}
+  image8: {fileID: 21300000, guid: 93df6e62fd1187041926ee99d7bc6475, type: 3}
+  image9: {fileID: 21300000, guid: 47059d5b63a7e7e4fbf28e3e0219257d, type: 3}
+  image10: {fileID: 21300000, guid: f6ccb4ecbb5f4c246b37e99ba475c4d0, type: 3}
+  canciones: {fileID: 8300000, guid: 8f38520727d828e4b92d0ffadb5b90b8, type: 3}
