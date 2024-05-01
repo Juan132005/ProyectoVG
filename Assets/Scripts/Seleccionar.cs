@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
+
 public class Seleccionar : MonoBehaviour
 {
     public TMP_Text level;
@@ -21,6 +22,8 @@ public class Seleccionar : MonoBehaviour
     private int inicio;
     private bool temporizadorActivo = false;
     public ScoreManager scoreManager;
+    private int correcto;
+    public cameraChange cameraChanger;
 
 
     // Start is called before the first frame update
@@ -41,8 +44,8 @@ public class Seleccionar : MonoBehaviour
         playerMusic.clip = playList[randomNumber].canciones;
         playerMusic.Play();
         Juego();
-    }
 
+    }
 
 
     void Juego()
@@ -122,9 +125,6 @@ public class Seleccionar : MonoBehaviour
 
 
 
-
-
-
     void GenerateRandomNumber()
     {
         randomNumber = Random.Range(0, 5); // Genera un número aleatorio entre 0 y 4
@@ -133,99 +133,119 @@ public class Seleccionar : MonoBehaviour
     {
         randomNumber2 = Random.Range(0, 2); // Genera un número aleatorio entre 0 y 1
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "button1")
+        {
+            correcto =1;
+        }
+        if (other.tag == "button2")
+        {
+            correcto = 2;
+        }
+    }
 
     public void Boton1()
-    {
-        if (reset == 0)
-        {
-            if (contador <= 4)
+    { 
+        if (correcto == 1) 
+        { 
+            if (reset == 0)
             {
-                if (randomNumber2 == 0)
+                if (contador <= 4)
                 {
-                    resultado.text = "¡Correcto!";
-                    scoreManager.AddPoints(100);
+                    if (randomNumber2 == 0)
+                    {
+                        resultado.text = "¡Correcto!";
+                        scoreManager.AddPoints(100);
 
+                    }
+                    else
+                    {
+
+                        resultado.text = "Incorrecto";
+                        scoreManager.AddPoints(-100);
+
+                    }
+                    contador += 1;
+                    Start();
                 }
-                else
+            }
+            else
+            {
+                if (contador <= 4)
                 {
+                    if (randomNumber2 == 0)
+                    {
+                        resultado.text = "¡Correcto!";
+                        scoreManager.AddPoints(200);
 
-                    resultado.text = "Incorrecto";
-                    scoreManager.AddPoints(-100);
+                    }
+                    else
+                    {
 
+                        resultado.text = "Incorrecto";
+                        scoreManager.AddPoints(-200);
+
+                    }
+                    contador += 1;
+                    Start();
                 }
-                contador += 1;
-                Start();
             }
         }
-        else
-        {
-            if (contador <= 4)
-            {
-                if (randomNumber2 == 0)
-                {
-                    resultado.text = "¡Correcto!";
-                    scoreManager.AddPoints(200);
-
-                }
-                else
-                {
-
-                    resultado.text = "Incorrecto";
-                    scoreManager.AddPoints(-200);
-
-                }
-                contador += 1;
-                Start();
-            }
-        }
+     correcto = 0;
 
     }
+
     public void Boton2()
-    {
-        if (reset == 0)
+    {   
+        if (correcto == 2)
         {
-            if (contador <= 4)
+            if (reset == 0)
             {
-                if (randomNumber2 == 0)
+                if (contador <= 4)
                 {
-                    resultado.text = "Incorrecto";
-                    scoreManager.AddPoints(-100);
+                    if (randomNumber2 == 0)
+                    {
+                        resultado.text = "Incorrecto";
+                        scoreManager.AddPoints(-100);
 
+                    }
+                    else
+                    {
+                        resultado.text = "¡Correcto!";
+                        scoreManager.AddPoints(100);
+
+
+                    }
+                    contador += 1;
+                    Start();
                 }
-                else
-                {
-                    resultado.text = "¡Correcto!";
-                    scoreManager.AddPoints(100);
-
-
-                }
-                contador += 1;
-                Start();
             }
-        }
-        else
-        {
-            if (contador <= 4)
+            else
             {
-                if (randomNumber2 == 0)
+                if (contador <= 4)
                 {
-                    resultado.text = "Incorrecto";
-                    scoreManager.AddPoints(-200);
+                    if (randomNumber2 == 0)
+                    {
+                        resultado.text = "Incorrecto";
+                        scoreManager.AddPoints(-200);
 
+                    }
+                    else
+                    {
+                        resultado.text = "¡Correcto!";
+                        scoreManager.AddPoints(200);
+
+
+                    }
+                    contador += 1;
+                    Start();
                 }
-                else
-                {
-                    resultado.text = "¡Correcto!";
-                    scoreManager.AddPoints(200);
-
-
-                }
-                contador += 1;
-                Start();
             }
         }
         temporizadorActivo = true;
         Invoke("LimpiarResultado", 5f);
+        correcto = 0;
     }
 
     private void LimpiarResultado()
