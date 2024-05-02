@@ -1,68 +1,76 @@
 using System.Collections;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 
 public class Running : MonoBehaviour
 {
-    private string laneChange = "n";
     public ScoreManager scoreManager;
-    public int numeroAsignado=0;
-    private string midJump = "n";
-    public cameraChange cameraChanger;
+    public int numeroAsignado = 0;
+    private bool midJump = false;
+    private bool laneChange = false;
+    private int currentLane = 1; // Empieza en el carril del medio
+    private float[] lanes = { -1f, 0f, 1f }; // Posiciones x de los carriles
+
     void Start()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
     }
 
-  
     void Update()
     {
-        if((Input.GetKeyDown(KeyCode.A)) && (laneChange=="n") && (transform.position.x>-.9)){
-            GetComponent<Rigidbody>().velocity = new Vector3(-1, 0, 2);
-            laneChange = "y";
-            StartCoroutine(stopLaneCh());
+        if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
+        {
+            StartCoroutine(ChangeLane(-1));
         }
-        if((Input.GetKeyDown(KeyCode.D)) && (laneChange=="n")&& (transform.position.x< .9)){
-            GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 2);
-            laneChange = "y";
-            StartCoroutine(stopLaneCh());  
+        if (Input.GetKeyDown(KeyCode.D) && !laneChange && currentLane < lanes.Length - 1)
+        {
+            StartCoroutine(ChangeLane(1));
         }
-        if(Input.GetKeyDown(KeyCode.Space) && (transform.position.y> -1.6) && (transform.position.y< 1.6) && (midJump=="n")){
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 1.5f, 2);
-            midJump = "y";
-            StartCoroutine(stopJump());  
+        if (Input.GetKeyDown(KeyCode.Space) && !midJump)
+        {
+            StartCoroutine(Jump());
         }
-        
     }
-    IEnumerator stopJump()
+
+    IEnumerator Jump()
     {
+        midJump = true;
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 1.5f, 2);
         yield return new WaitForSeconds(.7f);
         GetComponent<Rigidbody>().velocity = new Vector3(0, -1.5f, 2);
         yield return new WaitForSeconds(.7f);
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
-        midJump = "n";
+        midJump = false;
     }
-    IEnumerator stopLaneCh()
+
+    IEnumerator ChangeLane(int direction)
     {
-        yield return new WaitForSeconds(0.5f);
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
-        laneChange = "n";
-        //Debug.Log(GetComponent<Transform>().position);
+        laneChange = true;
+        int targetLane = currentLane + direction;
+        float targetX = lanes[targetLane];
+        while (Mathf.Abs(transform.position.x - targetX) > 0.1f)
+        {
+            float moveX = Mathf.MoveTowards(transform.position.x, targetX, Time.deltaTime * 5f);
+            transform.position = new Vector3(moveX, transform.position.y, transform.position.z);
+            yield return null;
+        }
+        currentLane = targetLane;
+        laneChange = false;
     }
-    private void OnTriggerEnter(Collider other){
-        if (other.tag=="obstacle"){
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "obstacle")
+        {
             scoreManager.AddPoints(-100);
         }
         if (other.tag == "button1")
         {
-            numeroAsignado=1;
+            numeroAsignado = 1;
         }
         if (other.tag == "button2")
         {
-           numeroAsignado=2;
+            numeroAsignado = 2;
         }
-
     }
 }
