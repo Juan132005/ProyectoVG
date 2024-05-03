@@ -22,13 +22,13 @@ public class Seleccionar : MonoBehaviour
     private int inicio;
     private bool temporizadorActivo = false;
     public ScoreManager scoreManager;
-    private int correcto;
     public cameraChange cameraChanger;
 
 
     // Start is called before the first frame update
     void Start()
     {
+       
         if (inicio == 0)
         {
             if (reset == 0)
@@ -43,6 +43,7 @@ public class Seleccionar : MonoBehaviour
         GenerateRandomNumber2();
         playerMusic.clip = playList[randomNumber].canciones;
         playerMusic.Play();
+
         Juego();
 
     }
@@ -127,35 +128,24 @@ public class Seleccionar : MonoBehaviour
 
     void GenerateRandomNumber()
     {
-        randomNumber = Random.Range(0, 5); // Genera un número aleatorio entre 0 y 4
+        randomNumber = Random.Range(0, 5); // Genera un nï¿½mero aleatorio entre 0 y 4
     }
     void GenerateRandomNumber2()
     {
-        randomNumber2 = Random.Range(0, 2); // Genera un número aleatorio entre 0 y 1
+        randomNumber2 = Random.Range(0, 2); // Genera un nï¿½mero aleatorio entre 0 y 1
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "button1")
-        {
-            correcto =1;
-        }
-        if (other.tag == "button2")
-        {
-            correcto = 2;
-        }
-    }
+
 
     public void Boton1()
     { 
-        if (correcto == 1) 
-        { 
+
             if (reset == 0)
             {
                 if (contador <= 4)
                 {
                     if (randomNumber2 == 0)
                     {
-                        resultado.text = "¡Correcto!";
+                        resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
 
                     }
@@ -176,30 +166,27 @@ public class Seleccionar : MonoBehaviour
                 {
                     if (randomNumber2 == 0)
                     {
-                        resultado.text = "¡Correcto!";
-                        scoreManager.AddPoints(200);
+                        resultado.text = "Correcto";
+                        scoreManager.AddPoints(100);
 
                     }
                     else
                     {
 
                         resultado.text = "Incorrecto";
-                        scoreManager.AddPoints(-200);
+                        scoreManager.AddPoints(-100);
 
                     }
                     contador += 1;
                     Start();
                 }
             }
-        }
-     correcto = 0;
-
+            StartCoroutine(ClearResultadoText());
     }
 
     public void Boton2()
     {   
-        if (correcto == 2)
-        {
+
             if (reset == 0)
             {
                 if (contador <= 4)
@@ -212,7 +199,7 @@ public class Seleccionar : MonoBehaviour
                     }
                     else
                     {
-                        resultado.text = "¡Correcto!";
+                        resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
 
 
@@ -228,13 +215,13 @@ public class Seleccionar : MonoBehaviour
                     if (randomNumber2 == 0)
                     {
                         resultado.text = "Incorrecto";
-                        scoreManager.AddPoints(-200);
+                        scoreManager.AddPoints(-100);
 
                     }
                     else
                     {
-                        resultado.text = "¡Correcto!";
-                        scoreManager.AddPoints(200);
+                        resultado.text = "Correcto!";
+                        scoreManager.AddPoints(100);
 
 
                     }
@@ -242,17 +229,14 @@ public class Seleccionar : MonoBehaviour
                     Start();
                 }
             }
-        }
-        temporizadorActivo = true;
-        Invoke("LimpiarResultado", 5f);
-        correcto = 0;
+            StartCoroutine(ClearResultadoText());
+    }
+    IEnumerator ClearResultadoText()
+    {
+        yield return new WaitForSeconds(3f);
+        resultado.text = ""; // Clear the text after 3 seconds
     }
 
-    private void LimpiarResultado()
-    {
-        resultado.text = "";
-        temporizadorActivo = false;
-    }
 }
 
 

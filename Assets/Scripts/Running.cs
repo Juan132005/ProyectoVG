@@ -11,6 +11,8 @@ public class Running : MonoBehaviour
     private int currentLane = 1; // Empieza en el carril del medio
     private float[] lanes = { -1f, 0f, 1f }; // Posiciones x de los carriles
 
+    public Seleccionar seleccionar; 
+
     void Start()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
@@ -35,10 +37,10 @@ public class Running : MonoBehaviour
     IEnumerator Jump()
     {
         midJump = true;
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 1.5f, 2);
-        yield return new WaitForSeconds(.7f);
-        GetComponent<Rigidbody>().velocity = new Vector3(0, -1.5f, 2);
-        yield return new WaitForSeconds(.7f);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 3f, 2); // Ajusta la velocidad de ascenso aquí
+        yield return new WaitForSeconds(.5f); // Reduce el tiempo de espera para un salto más rápido
+        GetComponent<Rigidbody>().velocity = new Vector3(0, -3f, 2); // Ajusta la velocidad de descenso aquí
+        yield return new WaitForSeconds(.5f); // Reduce el tiempo de espera para un salto más rápido
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
         midJump = false;
     }
@@ -66,11 +68,12 @@ public class Running : MonoBehaviour
         }
         if (other.tag == "button1")
         {
-            numeroAsignado = 1;
+            seleccionar.Boton1();
         }
         if (other.tag == "button2")
         {
-            numeroAsignado = 2;
+            seleccionar.Boton2();
         }
     }
+    
 }

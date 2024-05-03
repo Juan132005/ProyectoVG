@@ -5,22 +5,22 @@ public class cameraChange : MonoBehaviour
     public Camera cameraToDisable;
     public Camera cameraToEnable;
 
-    // Variable para almacenar el estado actual de la cámara
+    // Variable para almacenar el estado actual de la cï¿½mara
     private bool cameraEnabled = false;
 
     void Start()
     {
-        // Asegúrate de que las cámaras inicialmente estén configuradas correctamente
+        // Asegï¿½rate de que las cï¿½maras inicialmente estï¿½n configuradas correctamente
         if (cameraToDisable != null)
-            cameraToDisable.enabled = true; // Si ya está deshabilitada, asegúrate de que esté activada
+            cameraToDisable.enabled = true; // Si ya estï¿½ deshabilitada, asegï¿½rate de que estï¿½ activada
         if (cameraToEnable != null)
-            cameraToEnable.enabled = false; // Si ya está habilitada, asegúrate de que esté desactivada
+            cameraToEnable.enabled = false; // Si ya estï¿½ habilitada, asegï¿½rate de que estï¿½ desactivada
 
     }
 
     public void SwitchCameras()
     {
-        // Si la cámara está activada, desactívala y activa la otra cámara
+        // Si la cï¿½mara estï¿½ activada, desactï¿½vala y activa la otra cï¿½mara
         if (cameraEnabled)
         {
             if (cameraToDisable != null)
@@ -29,10 +29,10 @@ public class cameraChange : MonoBehaviour
             if (cameraToEnable != null)
                 cameraToEnable.enabled = false;
 
-            // Actualiza el estado de la cámara
+            // Actualiza el estado de la cï¿½mara
             cameraEnabled = false;
         }
-         // Si la cámara está desactivada, activa esta cámara y desactiva la otra cámara
+        else // Si la cï¿½mara estï¿½ desactivada, activa esta cï¿½mara y desactiva la otra cï¿½mara
         {
             if (cameraToDisable != null)
                 cameraToDisable.enabled = false;
@@ -40,7 +40,7 @@ public class cameraChange : MonoBehaviour
             if (cameraToEnable != null)
                 cameraToEnable.enabled = true;
 
-            // Actualiza el estado de la cámara
+            // Actualiza el estado de la cï¿½mara
             cameraEnabled = true;
         }
     }

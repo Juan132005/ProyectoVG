@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3845,6 +3845,7 @@ MonoBehaviour:
   cuadObj: {fileID: 2080988221}
   wheelObj: {fileID: 1818661702}
   cameraChanger: {fileID: 27675932}
+  player: {fileID: 1716353002}
 --- !u!4 &775387706
 Transform:
   m_ObjectHideFlags: 0
@@ -8111,7 +8112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.49, y: 0.29}
+  m_AnchoredPosition: {x: -1.41, y: 0.41}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1620478212
@@ -9227,7 +9228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 569787508}
   numeroAsignado: 0
-  cameraChanger: {fileID: 27675932}
+  seleccionar: {fileID: 255773979}
 --- !u!1 &1744284835 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8482062349969603675, guid: 4a015362eaca78747a6510a4e7ff08ba, type: 3}
@@ -11719,6 +11720,10 @@ PrefabInstance:
     - target: {fileID: 8482062349969603675, guid: 4a015362eaca78747a6510a4e7ff08ba, type: 3}
       propertyPath: m_Name
       value: Tile1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482062349969603675, guid: 4a015362eaca78747a6510a4e7ff08ba, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
