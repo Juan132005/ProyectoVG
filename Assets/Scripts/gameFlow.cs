@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameFlow : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class gameFlow : MonoBehaviour
     public cameraChange cameraChanger;
 
 
+
     void Start()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -43,6 +45,7 @@ public class gameFlow : MonoBehaviour
           StartCoroutine(spawnTile());
         //}
         //contador = 0;
+
     }
 
     void Update()
@@ -55,13 +58,14 @@ public class gameFlow : MonoBehaviour
         //bool cameraToEnableEnabled = cameraChanger.IsCameraToEnableEnabled();
         //if (cameraToEnableEnabled)
         //{
-          //  StartCoroutine(spawnTile2());
+        //  StartCoroutine(spawnTile2());
         //}
         //else
         //{
         //  StartCoroutine(spawnTile());
         //}
         //contador = 0;
+
     }
     
     IEnumerator spawnTile()
@@ -178,5 +182,6 @@ public class gameFlow : MonoBehaviour
                 nextTileSpawn.z += 4;
             }
         }
-    }
+
+}
 

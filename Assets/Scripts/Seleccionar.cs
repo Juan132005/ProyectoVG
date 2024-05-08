@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 
 
-
 public class Seleccionar : MonoBehaviour
 {
     public TMP_Text level;
@@ -23,6 +22,7 @@ public class Seleccionar : MonoBehaviour
     private bool temporizadorActivo = false;
     public ScoreManager scoreManager;
     public cameraChange cameraChanger;
+    public CanvasGroup canvasGroup;
 
 
     // Start is called before the first frame update
@@ -43,7 +43,8 @@ public class Seleccionar : MonoBehaviour
         GenerateRandomNumber2();
         playerMusic.clip = playList[randomNumber].canciones;
         playerMusic.Play();
-
+        // Configura la transparencia inicial a 0
+        canvasGroup.alpha = 0f;
         Juego();
 
     }
@@ -147,8 +148,12 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
+                        // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
 
-                    }
+                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
+                        StartCoroutine(FadeImageOut());
+                }
                     else
                     {
 
@@ -168,8 +173,12 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
+                        // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
 
-                    }
+                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
+                        StartCoroutine(FadeImageOut());
+                }
                     else
                     {
 
@@ -181,7 +190,10 @@ public class Seleccionar : MonoBehaviour
                     Start();
                 }
             }
-            StartCoroutine(ClearResultadoText());
+
+
+
+        StartCoroutine(ClearResultadoText());
     }
 
     public void Boton2()
@@ -201,9 +213,13 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
+                        // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
 
+                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
+                        StartCoroutine(FadeImageOut());
 
-                    }
+                }
                     contador += 1;
                     Start();
                 }
@@ -223,20 +239,54 @@ public class Seleccionar : MonoBehaviour
                         resultado.text = "Correcto!";
                         scoreManager.AddPoints(100);
 
+                        // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
 
-                    }
+                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
+                        StartCoroutine(FadeImageOut());
+                }
                     contador += 1;
                     Start();
                 }
             }
-            StartCoroutine(ClearResultadoText());
+
+
+
+        StartCoroutine(ClearResultadoText());
     }
     IEnumerator ClearResultadoText()
     {
         yield return new WaitForSeconds(3f);
         resultado.text = ""; // Clear the text after 3 seconds
     }
+    IEnumerator FadeImageIn()
+    {
+        // Incrementa gradualmente la transparencia de 0 a 1 en 1 segundo
+        float duration = 0.5f;
+        float currentTime = 0f;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(0f, 0.5f, currentTime / duration);
+            yield return null;
+        }
+        canvasGroup.alpha = 1f; // Asegúrate de que la transparencia sea exactamente 1 al final
+    }
 
+    IEnumerator FadeImageOut()
+    {
+        // Disminuye gradualmente la transparencia de 1 a 0 en 1 segundo después de esperar un segundo
+        yield return new WaitForSeconds(1f);
+        float duration = 1f;
+        float currentTime = 0f;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, currentTime / duration);
+            yield return null;
+        }
+        canvasGroup.alpha = 0f; // Asegúrate de que la transparencia sea exactamente 0 al final
+    }
 }
 
 

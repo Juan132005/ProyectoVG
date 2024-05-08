@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3845,7 +3845,6 @@ MonoBehaviour:
   cuadObj: {fileID: 2080988221}
   wheelObj: {fileID: 1818661702}
   cameraChanger: {fileID: 27675932}
-  player: {fileID: 1716353002}
 --- !u!4 &775387706
 Transform:
   m_ObjectHideFlags: 0
@@ -6521,27 +6520,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_Size.x
-      value: 0.5
+      value: 0.27618158
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_Size.y
-      value: 0.24722077
+      value: 0.11779097
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_Size.z
-      value: 0.49646187
+      value: 0.36042213
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_Center.x
-      value: 0.5
+      value: 0.50760657
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_Center.y
-      value: 0.12638961
+      value: 0.0616747
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_Center.z
-      value: 0.032126904
+      value: -0.035892963
       objectReference: {fileID: 0}
     - target: {fileID: 4112951310207961399, guid: f43caaa598079fa43b47edd7e32b340d, type: 3}
       propertyPath: m_IsTrigger
@@ -10721,8 +10720,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.000005, y: 0.00000059604645, z: 10.000002}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8, y: 1, z: 5}
+  m_Center: {x: 0, y: 0, z: 1.3915343}
 --- !u!54 &2080988223
 Rigidbody:
   m_ObjectHideFlags: 0
