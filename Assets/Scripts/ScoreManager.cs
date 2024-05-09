@@ -7,14 +7,15 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public TMP_Text scoreText;
+    public TMP_Text scoreText2;
     private int score = 300;
     private const string scoreKey = "PlayerScore";
+    public Seleccionar seleccionar;
 
     void Start()
     {
         
         LoadScore();
-        
     }
 
     public void AddPoints(int points)
@@ -33,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScoreText()
     {
         scoreText.text = "Saldo: " + score.ToString();
+        scoreText2.text = "Saldo: " + score.ToString();
     }
 
     public void ResetScore()

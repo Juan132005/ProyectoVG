@@ -11,8 +11,12 @@ public class Running : MonoBehaviour
     private int currentLane = 1; // Empieza en el carril del medio
     private float[] lanes = { -1f, 0f, 1f }; // Posiciones x de los carriles
     public Seleccionar seleccionar; 
+    public cameraChange cameraChanger;
+
+    private int camara;
 
     void Start()
+
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
     }
@@ -20,11 +24,18 @@ public class Running : MonoBehaviour
     void Update()
     {
         if (seleccionar.correcto == 1)
-        {
+        {   
+            if (camara==0){
+            cameraChanger.SwitchCameras();
+            camara+=1;
+            }
+            MoveCharacterToMiddleLane();
             if (Input.GetKeyDown(KeyCode.Space) && !midJump)
             {
                 StartCoroutine(Jump());
+                
             }
+
 
         }
         else
@@ -43,6 +54,22 @@ public class Running : MonoBehaviour
             }
         }
     }
+
+        void MoveCharacterToMiddleLane()
+{
+    StartCoroutine(MoveToMiddleLaneCoroutine());
+}
+
+    IEnumerator MoveToMiddleLaneCoroutine()
+    {
+        yield return new WaitForSeconds(1f); // Esperar 1 segundo
+
+        float targetX = lanes[1]; // Carril del medio (posición x)
+        transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+        currentLane = 1; // Actualizar la variable currentLane
+    }
+
+
 
     IEnumerator Jump()
     {

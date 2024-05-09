@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Diagnostics;
+using System.Collections.Generic; // Agregar esta línea
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,8 +30,7 @@ public class gameFlow : MonoBehaviour
     public Transform character;
     private Vector3 characterMiddleLanePosition = new Vector3(0, 0, 0); // Posición en el carril central
 
-
-
+    private List<GameObject> spawnedTiles = new List<GameObject>();
 
     void Start()
     {
@@ -40,33 +39,22 @@ public class gameFlow : MonoBehaviour
             // Llama al m�todo SwitchCameras del script cameraChange
             cameraChanger.SwitchCameras();
         }
-        //bool cameraToEnableEnabled = cameraChanger.IsCameraToEnableEnabled();
-        //if (cameraToEnableEnabled)
-        //{
-          //  StartCoroutine(spawnTile3());
-        //}
-        //else
-        //{
-          StartCoroutine(spawnTile());
-        //}
-        //contador = 0;
 
+        StartCoroutine(spawnTile());
     }
 
     void Update()
     {
-
-        //bool cameraToEnableEnabled = cameraChanger.IsCameraToEnableEnabled();
-        //if (cameraToEnableEnabled)
-        //{
-        //  StartCoroutine(spawnTile2());
-        //}
-        //else
-        //{
-        //  StartCoroutine(spawnTile());
-        //}
-        //contador = 0;
-
+        // Check if any spawned tiles are out of view
+        for (int i = 0; i < spawnedTiles.Count; i++)
+        {
+            if (spawnedTiles[i].transform.position.z < character.position.z - 20) // Assuming the character can see 20 units ahead
+            {
+                Destroy(spawnedTiles[i]);
+                spawnedTiles.RemoveAt(i);
+                i--; // Adjust index after removing item
+            }
+        }
     }
     
     IEnumerator spawnTile()
@@ -85,7 +73,8 @@ public class gameFlow : MonoBehaviour
                 else
                 {
                     objeto = UnityEngine.Random.Range(1, 4);
-                    Instantiate(tile1Obj, nextTileSpawn, Quaternion.identity);
+                    GameObject newTile = Instantiate(tile1Obj, nextTileSpawn, Quaternion.identity).gameObject;
+                    spawnedTiles.Add(newTile);
                     yield return new WaitForSeconds(2);
 
                     // Generar posici�n para la piedra
@@ -124,7 +113,8 @@ public class gameFlow : MonoBehaviour
             {
                 rueda += 1;
                 objeto = UnityEngine.Random.Range(1, 4);
-                Instantiate(tile1Obj, nextTileSpawn, Quaternion.identity);
+                GameObject newTile = Instantiate(tile1Obj, nextTileSpawn, Quaternion.identity).gameObject;
+                spawnedTiles.Add(newTile);
                 yield return new WaitForSeconds(2);
 
                 // Generar posici�n para la piedra
@@ -231,10 +221,11 @@ public class gameFlow : MonoBehaviour
                 nextTileSpawn.z += 4;
             }
         }
-        }
+    }
+
     void ClearMiddleLane()
     {
-        GameObject[] middleLaneObstacles = GameObject.FindGameObjectsWithTag("Destroy");
+        GameObject[] middleLaneObstacles = GameObject.FindGameObjectsWithTag("obstacle");
         foreach (GameObject obstacle in middleLaneObstacles)
         { 
             // Comparar las posiciones en el eje Z del personaje y del obstáculo
@@ -243,14 +234,11 @@ public class gameFlow : MonoBehaviour
                 Destroy(obstacle); // Destruir el obstáculo si está después del personaje
             }
         }
-
     }
+
     void MoveCharacterToMiddleLane()
     {
         character.position = characterMiddleLanePosition; // Mover el personaje a la posición del carril central
         //no sé pq no funciona, toca arreglar esto
     }
-
-
 }
-

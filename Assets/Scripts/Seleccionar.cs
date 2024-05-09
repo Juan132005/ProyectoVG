@@ -20,7 +20,7 @@ public class Seleccionar : MonoBehaviour
     private int randomNumber2;
     private int contador;
     private int inicio;
-    private bool temporizadorActivo = false;
+    //private bool temporizadorActivo = false;
     public ScoreManager scoreManager;
     public cameraChange cameraChanger;
     public CanvasGroup canvasGroup;
@@ -151,20 +151,20 @@ public class Seleccionar : MonoBehaviour
                         resultado.text = "Correcto";
                         resultado2.text = "Correcto";
                         scoreManager.AddPoints(100);
-                        // Inicia la animación para aumentar la transparencia a 1
-                        StartCoroutine(FadeImageIn());
+                        correcto = 0;
 
-                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
-                        StartCoroutine(FadeImageOut());
-                        correcto = 1;
-                        cameraChanger.SwitchCameras();
                 }
                     else
                     {
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-                        correcto = 0;
+                                                // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
+
+                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
+                        StartCoroutine(FadeImageOut());
+                        correcto = 1;
                 }
                     contador += 1;
                     Start();
@@ -179,13 +179,8 @@ public class Seleccionar : MonoBehaviour
                         resultado2.text = "Correcto";
                         resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
-                        // Inicia la animación para aumentar la transparencia a 1
-                        StartCoroutine(FadeImageIn());
+                        correcto = 0;
 
-                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
-                        StartCoroutine(FadeImageOut());
-                        correcto = 1;
-                        cameraChanger.SwitchCameras();
                 }
                     else
                     {
@@ -193,7 +188,12 @@ public class Seleccionar : MonoBehaviour
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-                        correcto = 0;
+                                                // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
+
+                        // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
+                        StartCoroutine(FadeImageOut());
+                        correcto = 1;
                 }
                     contador += 1;
                     Start();
@@ -205,8 +205,8 @@ public class Seleccionar : MonoBehaviour
         StartCoroutine(ClearResultadoText());
     }
 
-    public void Boton2()
-    {   
+        public void Boton2()
+    { 
 
             if (reset == 0)
             {
@@ -217,22 +217,23 @@ public class Seleccionar : MonoBehaviour
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-                        correcto = 0;
-                }
-                    else
-                    {
-                        resultado2.text = "Correcto";
-                        resultado.text = "Correcto";
-                        scoreManager.AddPoints(100);
-
-                        // Inicia la animación para aumentar la transparencia a 1
+                                                // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
                         // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
                         StartCoroutine(FadeImageOut());
                         correcto = 1;
-                        cameraChanger.SwitchCameras();
-                }
+                        
+                    }
+                    else
+                    {
+                        resultado.text = "Correcto";
+                        resultado2.text = "Correcto";
+                        scoreManager.AddPoints(100);
+
+                        correcto = 0;
+
+                    }
                     contador += 1;
                     Start();
                 }
@@ -246,23 +247,23 @@ public class Seleccionar : MonoBehaviour
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-                        correcto = 0;
-                    }
-                    else
-                    {
-                        resultado2.text = "Correcto!";
-                        resultado.text = "Correcto!";
-                        scoreManager.AddPoints(100);
-
-
-                    // Inicia la animación para aumentar la transparencia a 1
-                    StartCoroutine(FadeImageIn());
+                                                // Inicia la animación para aumentar la transparencia a 1
+                        StartCoroutine(FadeImageIn());
 
                         // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
                         StartCoroutine(FadeImageOut());
                         correcto = 1;
-                        cameraChanger.SwitchCameras();
-                }
+                        
+                    }
+                    else
+                    {
+                        resultado.text = "Correcto";
+                        resultado2.text = "Correcto";
+                        scoreManager.AddPoints(100);
+
+                        correcto = 0;
+
+                    }
                     contador += 1;
                     Start();
                 }
@@ -272,6 +273,7 @@ public class Seleccionar : MonoBehaviour
 
         StartCoroutine(ClearResultadoText());
     }
+    
     IEnumerator ClearResultadoText()
     {
         yield return new WaitForSeconds(3f);
@@ -281,12 +283,12 @@ public class Seleccionar : MonoBehaviour
     IEnumerator FadeImageIn()
     {
         // Incrementa gradualmente la transparencia de 0 a 1 en 1 segundo
-        float duration = 0.8f;
+        float duration = 1f;
         float currentTime = 0f;
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, 0.8f, currentTime / duration);
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, currentTime / duration);
             yield return null;
         }
         canvasGroup.alpha = 1f; // Asegúrate de que la transparencia sea exactamente 1 al final
