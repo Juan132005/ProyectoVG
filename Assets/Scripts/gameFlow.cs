@@ -25,6 +25,11 @@ public class gameFlow : MonoBehaviour
     public Transform wheelObj;
     private Vector3 nextWheelSpawn = new Vector3(0, 0, 20);
     public cameraChange cameraChanger;
+    public Seleccionar seleccionarScript;
+    private int count;
+    public Transform character;
+    private Vector3 characterMiddleLanePosition = new Vector3(0, 0, 0); // Posición en el carril central
+
 
 
 
@@ -50,11 +55,7 @@ public class gameFlow : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            // Llama al m�todo SwitchCameras del script cameraChange
-          cameraChanger.SwitchCameras();
-        }
+
         //bool cameraToEnableEnabled = cameraChanger.IsCameraToEnableEnabled();
         //if (cameraToEnableEnabled)
         //{
@@ -70,9 +71,57 @@ public class gameFlow : MonoBehaviour
     
     IEnumerator spawnTile()
     {
+        count = 0;
+        while (true)
+        {
+            count += 1;//aquí pongo un if para destruir todos los objetos y empezar a crear otros
+            if (seleccionarScript.correcto == 1)
+            {
+                if (count == 2)
+                {
+                    MoveCharacterToMiddleLane();
+                    ClearMiddleLane();
+                }
+                else
+                {
+                    objeto = UnityEngine.Random.Range(1, 4);
+                    Instantiate(tile1Obj, nextTileSpawn, Quaternion.identity);
+                    yield return new WaitForSeconds(2);
 
-            while (true)
-            {//aquí pongo un if para destruir todos los objetos y empezar a crear otros
+                    // Generar posici�n para la piedra
+                    nextPiedraSpawn = nextTileSpawn;
+                    contador = (int)nextTileSpawn.z; // Convertir a int
+                    randZ = UnityEngine.Random.Range(contador, contador + 4);
+                    nextPiedraSpawn.y = .18f;
+                    nextPiedraSpawn.x = -1;
+                    nextPiedraSpawn.z = randZ;
+
+                    // Generar posici�n para la puerta
+                    nextDoorSpawn = nextTileSpawn;
+                    contar = (int)nextTileSpawn.z; // Convertir a int
+                    randZ = UnityEngine.Random.Range(contar, contar + 4);
+                    nextDoorSpawn.z = randZ;
+                    nextDoorSpawn.y = 0;
+                    nextDoorSpawn.x = -0.5f;
+                    if (nextDoorSpawn.z == nextPiedraSpawn.z)
+                    {
+                        nextDoorSpawn.z += 4;
+                    }
+
+                    if (objeto == 1)
+                    {
+                        Instantiate(piedraObj, nextPiedraSpawn, piedraObj.rotation);
+                    }
+                    else if (objeto == 2)
+                    {
+                        Instantiate(doorObj, nextDoorSpawn, doorObj.rotation);
+                    }
+                    // Instanciar los objetos
+                    nextTileSpawn.z += 4;
+                }
+            }
+            else
+            {
                 rueda += 1;
                 objeto = UnityEngine.Random.Range(1, 4);
                 Instantiate(tile1Obj, nextTileSpawn, Quaternion.identity);
@@ -182,6 +231,26 @@ public class gameFlow : MonoBehaviour
                 nextTileSpawn.z += 4;
             }
         }
+        }
+    void ClearMiddleLane()
+    {
+        GameObject[] middleLaneObstacles = GameObject.FindGameObjectsWithTag("Destroy");
+        foreach (GameObject obstacle in middleLaneObstacles)
+        { 
+            // Comparar las posiciones en el eje Z del personaje y del obstáculo
+            if (obstacle.transform.position.z > character.position.z)
+            {
+                Destroy(obstacle); // Destruir el obstáculo si está después del personaje
+            }
+        }
+
+    }
+    void MoveCharacterToMiddleLane()
+    {
+        character.position = characterMiddleLanePosition; // Mover el personaje a la posición del carril central
+        //no sé pq no funciona, toca arreglar esto
+    }
+
 
 }
 

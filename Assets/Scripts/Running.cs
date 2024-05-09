@@ -10,7 +10,6 @@ public class Running : MonoBehaviour
     private bool laneChange = false;
     private int currentLane = 1; // Empieza en el carril del medio
     private float[] lanes = { -1f, 0f, 1f }; // Posiciones x de los carriles
-
     public Seleccionar seleccionar; 
 
     void Start()
@@ -20,17 +19,28 @@ public class Running : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
+        if (seleccionar.correcto == 1)
         {
-            StartCoroutine(ChangeLane(-1));
+            if (Input.GetKeyDown(KeyCode.Space) && !midJump)
+            {
+                StartCoroutine(Jump());
+            }
+
         }
-        if (Input.GetKeyDown(KeyCode.D) && !laneChange && currentLane < lanes.Length - 1)
+        else
         {
-            StartCoroutine(ChangeLane(1));
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !midJump)
-        {
-            StartCoroutine(Jump());
+            if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
+            {
+                StartCoroutine(ChangeLane(-1));
+            }
+            if (Input.GetKeyDown(KeyCode.D) && !laneChange && currentLane < lanes.Length - 1)
+            {
+                StartCoroutine(ChangeLane(1));
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && !midJump)
+            {
+                StartCoroutine(Jump());
+            }
         }
     }
 

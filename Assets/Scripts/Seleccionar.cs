@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using System.Security.Cryptography.X509Certificates;
 
 public class Seleccionar : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class Seleccionar : MonoBehaviour
     public Image imageIA;
     public Image imageHUM;
     public TMP_Text resultado;
+    public TMP_Text resultado2;
     public Images[] playList;
     public int reset;
     private AudioSource playerMusic;
@@ -23,6 +24,7 @@ public class Seleccionar : MonoBehaviour
     public ScoreManager scoreManager;
     public cameraChange cameraChanger;
     public CanvasGroup canvasGroup;
+    public int correcto;
 
 
     // Start is called before the first frame update
@@ -147,20 +149,23 @@ public class Seleccionar : MonoBehaviour
                     if (randomNumber2 == 0)
                     {
                         resultado.text = "Correcto";
+                        resultado2.text = "Correcto";
                         scoreManager.AddPoints(100);
                         // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
                         // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
                         StartCoroutine(FadeImageOut());
+                        correcto = 1;
+                        cameraChanger.SwitchCameras();
                 }
                     else
                     {
-
+                        resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-
-                    }
+                        correcto = 0;
+                }
                     contador += 1;
                     Start();
                 }
@@ -171,6 +176,7 @@ public class Seleccionar : MonoBehaviour
                 {
                     if (randomNumber2 == 0)
                     {
+                        resultado2.text = "Correcto";
                         resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
                         // Inicia la animación para aumentar la transparencia a 1
@@ -178,14 +184,17 @@ public class Seleccionar : MonoBehaviour
 
                         // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
                         StartCoroutine(FadeImageOut());
+                        correcto = 1;
+                        cameraChanger.SwitchCameras();
                 }
                     else
                     {
 
+                        resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-
-                    }
+                        correcto = 0;
+                }
                     contador += 1;
                     Start();
                 }
@@ -205,20 +214,24 @@ public class Seleccionar : MonoBehaviour
                 {
                     if (randomNumber2 == 0)
                     {
+                        resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-
-                    }
+                        correcto = 0;
+                }
                     else
                     {
+                        resultado2.text = "Correcto";
                         resultado.text = "Correcto";
                         scoreManager.AddPoints(100);
+
                         // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
                         // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
                         StartCoroutine(FadeImageOut());
-
+                        correcto = 1;
+                        cameraChanger.SwitchCameras();
                 }
                     contador += 1;
                     Start();
@@ -230,20 +243,25 @@ public class Seleccionar : MonoBehaviour
                 {
                     if (randomNumber2 == 0)
                     {
+                        resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
                         scoreManager.AddPoints(-100);
-
+                        correcto = 0;
                     }
                     else
                     {
+                        resultado2.text = "Correcto!";
                         resultado.text = "Correcto!";
                         scoreManager.AddPoints(100);
 
-                        // Inicia la animación para aumentar la transparencia a 1
-                        StartCoroutine(FadeImageIn());
+
+                    // Inicia la animación para aumentar la transparencia a 1
+                    StartCoroutine(FadeImageIn());
 
                         // Inicia la animación para disminuir la transparencia a 0 después de 1 segundo
                         StartCoroutine(FadeImageOut());
+                        correcto = 1;
+                        cameraChanger.SwitchCameras();
                 }
                     contador += 1;
                     Start();
@@ -258,16 +276,17 @@ public class Seleccionar : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         resultado.text = ""; // Clear the text after 3 seconds
+        resultado2.text = ""; // Clear the text after 3 seconds
     }
     IEnumerator FadeImageIn()
     {
         // Incrementa gradualmente la transparencia de 0 a 1 en 1 segundo
-        float duration = 0.5f;
+        float duration = 0.8f;
         float currentTime = 0f;
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, 0.5f, currentTime / duration);
+            canvasGroup.alpha = Mathf.Lerp(0f, 0.8f, currentTime / duration);
             yield return null;
         }
         canvasGroup.alpha = 1f; // Asegúrate de que la transparencia sea exactamente 1 al final
