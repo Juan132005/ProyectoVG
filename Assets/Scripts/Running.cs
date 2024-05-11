@@ -26,8 +26,9 @@ public class Running : MonoBehaviour
         if (seleccionar.correcto == 1)
         {   
             if (camara==0){
-            cameraChanger.SwitchCameras();
-            camara+=1;
+
+                cameraChanger.SwitchCameras();
+                camara+=1;
             }
             MoveCharacterToMiddleLane();
             if (Input.GetKeyDown(KeyCode.Space) && !midJump)

@@ -283,12 +283,12 @@ public class Seleccionar : MonoBehaviour
     IEnumerator FadeImageIn()
     {
         // Incrementa gradualmente la transparencia de 0 a 1 en 1 segundo
-        float duration = 1f;
+        float duration = 2f;
         float currentTime = 0f;
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, currentTime / duration);
+            canvasGroup.alpha = Mathf.Lerp(0f, 2f, currentTime / duration);
             yield return null;
         }
         canvasGroup.alpha = 1f; // Asegúrate de que la transparencia sea exactamente 1 al final
@@ -298,12 +298,12 @@ public class Seleccionar : MonoBehaviour
     {
         // Disminuye gradualmente la transparencia de 1 a 0 en 1 segundo después de esperar un segundo
         yield return new WaitForSeconds(1f);
-        float duration = 1f;
+        float duration = 2f;
         float currentTime = 0f;
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(1f, 0f, currentTime / duration);
+            canvasGroup.alpha = Mathf.Lerp(2f, 0f, currentTime / duration);
             yield return null;
         }
         canvasGroup.alpha = 0f; // Asegúrate de que la transparencia sea exactamente 0 al final

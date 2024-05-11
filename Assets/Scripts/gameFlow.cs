@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class gameFlow : MonoBehaviour
 {
     public Transform tile1Obj;
-    private Vector3 nextTileSpawn = new Vector3(0, 0, 20); // Initialize nextTileSpawn
+    private Vector3 nextTileSpawn = new Vector3(0, 0, 16); // Initialize nextTileSpawn
     public Transform piedraObj;
-    private Vector3 nextPiedraSpawn = new Vector3(0, 0, 20);//Cada que regenera un trozo de camino surge una piedra en una posici�n aleatoria
+    private Vector3 nextPiedraSpawn = new Vector3(0, 0, 16);//Cada que regenera un trozo de camino surge una piedra en una posici�n aleatoria
     private int randX;
     private int randx;
     private int randxX;
@@ -19,11 +19,11 @@ public class gameFlow : MonoBehaviour
     private int contar;
     private int objeto;
     public Transform doorObj;
-    private Vector3 nextDoorSpawn = new Vector3(0, 0, 20);
+    private Vector3 nextDoorSpawn = new Vector3(0, 0, 16);
     public Transform cuadObj;
-    private Vector3 nextCuadSpawn = new Vector3(0, 0, 20);
+    private Vector3 nextCuadSpawn = new Vector3(0, 0, 16);
     public Transform wheelObj;
-    private Vector3 nextWheelSpawn = new Vector3(0, 0, 20);
+    private Vector3 nextWheelSpawn = new Vector3(0, 0, 16);
     public cameraChange cameraChanger;
     public Seleccionar seleccionarScript;
     private int count;
@@ -59,15 +59,18 @@ public class gameFlow : MonoBehaviour
     
     IEnumerator spawnTile()
     {
+        
         count = 0;
         while (true)
         {
-            count += 1;//aquí pongo un if para destruir todos los objetos y empezar a crear otros
+        
             if (seleccionarScript.correcto == 1)
             {
-                if (count == 2)
+                count += 1;
+                if (count == 1)
                 {
-                    MoveCharacterToMiddleLane();
+                    
+  
                     ClearMiddleLane();
                 }
                 else
@@ -228,17 +231,12 @@ public class gameFlow : MonoBehaviour
         GameObject[] middleLaneObstacles = GameObject.FindGameObjectsWithTag("obstacle");
         foreach (GameObject obstacle in middleLaneObstacles)
         { 
-            // Comparar las posiciones en el eje Z del personaje y del obstáculo
-            if (obstacle.transform.position.z > character.position.z)
-            {
-                Destroy(obstacle); // Destruir el obstáculo si está después del personaje
-            }
+        if (obstacle.CompareTag("obstacle"))
+        {
+            Destroy(obstacle);
+        }
         }
     }
 
-    void MoveCharacterToMiddleLane()
-    {
-        character.position = characterMiddleLanePosition; // Mover el personaje a la posición del carril central
-        //no sé pq no funciona, toca arreglar esto
-    }
+
 }
