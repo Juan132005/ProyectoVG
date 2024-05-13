@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3356,6 +3356,8 @@ MonoBehaviour:
   cameraChanger: {fileID: 27675932}
   seleccionarScript: {fileID: 255773979}
   character: {fileID: 1716353002}
+  coinObj: {fileID: 1939851006487014875, guid: 32575b5edaee6794abd6d2c3130488e4, type: 3}
+  coindObj: {fileID: 1939851006487014875, guid: cd29e3350e89f7a4cad7eee3f6ec881d, type: 3}
 --- !u!4 &775387706
 Transform:
   m_ObjectHideFlags: 0
@@ -7941,8 +7943,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4960882, y: 1.18, z: 0.66186655}
-  m_Center: {x: -0.0007998273, y: 0.59847164, z: -0.026765049}
+  m_Size: {x: 0.4960882, y: 1.1799998, z: 0.49210334}
+  m_Center: {x: -0.0007998347, y: 0.59847164, z: 0.058116555}
 --- !u!114 &1716353004
 MonoBehaviour:
   m_ObjectHideFlags: 0

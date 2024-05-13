@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     public TMP_Text scoreText;
     public TMP_Text scoreText2;
-    private int score = 300;
+    private int score = 1000;
     private const string scoreKey = "PlayerScore";
     public Seleccionar seleccionar;
 
@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
         if (score <= 0)
         {
+            SceneManager.LoadScene(1);
         }
         if (score >= 1000)
         {
@@ -39,7 +40,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetScore()
     {
-        score = 300;
+        score = 1000;
         PlayerPrefs.SetInt(scoreKey, score);
         UpdateScoreText();
     }
@@ -52,7 +53,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            score = 300;
+            score = 1000;
         }
         UpdateScoreText();
     }

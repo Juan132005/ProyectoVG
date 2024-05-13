@@ -150,7 +150,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado.text = "Correcto";
                         resultado2.text = "Correcto";
-                        scoreManager.AddPoints(100);
+                        scoreManager.AddPoints(200);
                         correcto = 0;
 
                 }
@@ -158,7 +158,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
-                        scoreManager.AddPoints(-100);
+                        scoreManager.AddPoints(-200);
                                                 // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
@@ -178,7 +178,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado2.text = "Correcto";
                         resultado.text = "Correcto";
-                        scoreManager.AddPoints(100);
+                        scoreManager.AddPoints(200);
                         correcto = 0;
 
                 }
@@ -187,7 +187,7 @@ public class Seleccionar : MonoBehaviour
 
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
-                        scoreManager.AddPoints(-100);
+                        scoreManager.AddPoints(-200);
                                                 // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
@@ -216,7 +216,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
-                        scoreManager.AddPoints(-100);
+                        scoreManager.AddPoints(-200);
                                                 // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
@@ -229,7 +229,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado.text = "Correcto";
                         resultado2.text = "Correcto";
-                        scoreManager.AddPoints(100);
+                        scoreManager.AddPoints(200);
 
                         correcto = 0;
 
@@ -246,7 +246,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado2.text = "Incorrecto";
                         resultado.text = "Incorrecto";
-                        scoreManager.AddPoints(-100);
+                        scoreManager.AddPoints(-200);
                                                 // Inicia la animación para aumentar la transparencia a 1
                         StartCoroutine(FadeImageIn());
 
@@ -259,7 +259,7 @@ public class Seleccionar : MonoBehaviour
                     {
                         resultado.text = "Correcto";
                         resultado2.text = "Correcto";
-                        scoreManager.AddPoints(100);
+                        scoreManager.AddPoints(200);
 
                         correcto = 0;
 

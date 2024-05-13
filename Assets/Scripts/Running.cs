@@ -103,6 +103,7 @@ public class Running : MonoBehaviour
         if (other.tag == "obstacle")
         {
             scoreManager.AddPoints(-100);
+            Destroy(other.gameObject);
         }
         if (other.tag == "button1")
         {
@@ -111,6 +112,11 @@ public class Running : MonoBehaviour
         if (other.tag == "button2")
         {
             seleccionar.Boton2();
+        }
+        if (other.tag == "dood")
+        {
+            scoreManager.AddPoints(100);
+            Destroy(other.gameObject);
         }
     }
     
