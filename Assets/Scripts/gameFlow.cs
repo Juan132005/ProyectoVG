@@ -221,7 +221,7 @@ public class gameFlow : MonoBehaviour
                 nextCuadSpawn.y = 0.4f;
                 randxX = UnityEngine.Random.Range(-1, 2);
 
-                randX = UnityEngine.Random.Range(-1, 2);
+                randXX = UnityEngine.Random.Range(-1, 2);
                 nextCoindSpawn = nextTileSpawn;
                 cont = (int)nextTileSpawn.z; // Convertir a int
                 randZ = UnityEngine.Random.Range(cont, cont + 4);
