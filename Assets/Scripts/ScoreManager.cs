@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
         if (score <= 0)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         if (score >= 1000)
         {
