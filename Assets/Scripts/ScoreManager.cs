@@ -57,4 +57,8 @@ public class ScoreManager : MonoBehaviour
         }
         UpdateScoreText();
     }
+    public int GetCurrentScore()
+    {
+        return score;
+    }
 }

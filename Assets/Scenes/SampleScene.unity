@@ -7961,6 +7961,7 @@ MonoBehaviour:
   numeroAsignado: 0
   seleccionar: {fileID: 255773979}
   cameraChanger: {fileID: 27675932}
+  canvas: {fileID: 914283039}
 --- !u!1 &1755764500 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8974268735369822012, guid: 4a015362eaca78747a6510a4e7ff08ba, type: 3}
