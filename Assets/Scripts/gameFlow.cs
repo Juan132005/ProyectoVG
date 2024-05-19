@@ -36,17 +36,10 @@ public class gameFlow : MonoBehaviour
     private Vector3 nextCoinSpawn = new Vector3(0, 0, 16);
     public Transform coindObj;
     private Vector3 nextCoindSpawn = new Vector3(0, 0, 16);
-    private float timer = 0f;
-    private bool timerStarted = false;
-    private const float resetTime = 60f;
+
 
     void Start()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            // Llama al m�todo SwitchCameras del script cameraChange
-            cameraChanger.SwitchCameras();
-        }
 
         StartCoroutine(spawnTile());
     }
@@ -69,17 +62,6 @@ public class gameFlow : MonoBehaviour
     
     IEnumerator spawnTile()
     {
-        if (!timerStarted)
-        {
-            timerStarted = true;
-            StartCoroutine(TimerCoroutine());
-        }
-        timer += Time.deltaTime;
-        if (timer >= resetTime)
-        {
-            ClearMiddleLane();
-            timer = 0f; // Reinicia el temporizador
-        }
 
         count = 0;
         while (true)
@@ -285,7 +267,7 @@ public class gameFlow : MonoBehaviour
         }
     }
 
-    void ClearMiddleLane()
+    public void ClearMiddleLane()
     {
         GameObject[] middleLaneObstacles = GameObject.FindGameObjectsWithTag("obstacle");
         foreach (GameObject obstacle in middleLaneObstacles)
@@ -303,12 +285,6 @@ public class gameFlow : MonoBehaviour
                 Destroy(dood);
             }
         }
-    }
-    IEnumerator TimerCoroutine()
-    {
-        yield return new WaitForSeconds(resetTime);
-        ClearMiddleLane();
-        timer = 0f; // Reinicia el temporizador
     }
 
 
