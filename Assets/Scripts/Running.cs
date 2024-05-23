@@ -21,12 +21,14 @@ public class Running : MonoBehaviour
     private int cuadros;
     public gameFlow GameFlow;
     private int borrar;
+    private int estado;
 
 
     void Start()
 
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 2);
+        estado=1;
     }
 
     void Update()
@@ -37,8 +39,8 @@ public class Running : MonoBehaviour
             if (camara == 0) {
 
                 cameraChanger.SwitchCameras();
-                StartCoroutine(activarMov());
                 camara += 1;
+                estado=0;
             }
             MoveCharacterToMiddleLane();
             if (Input.GetKeyDown(KeyCode.Space) && !midJump)
@@ -50,26 +52,25 @@ public class Running : MonoBehaviour
             {
                 camara += 1;
                 StartCoroutine(WaitAndSwitchCameras());
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
-                {
-                    StartCoroutine(ChangeLane(-1));
-                }
-                if (Input.GetKeyDown(KeyCode.D) && !laneChange && currentLane < lanes.Length - 1)
-                {
-                    StartCoroutine(ChangeLane(1));
-                }
-                if (Input.GetKeyDown(KeyCode.Space) && !midJump)
-                {
-                    StartCoroutine(Jump());
-                }
+
             }
 
         }
         else
         {
+
+            if (seleccionar.correcto == 0 && borrar==0)
+            {
+                StartCoroutine(wait());
+                borrar += 1;
+                estado=1;
+            }
+            if (seleccionar.correcto == 2)
+            {
+                estado=1;
+            }
+        }
+        if (estado==1){
             if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
             {
                 StartCoroutine(ChangeLane(-1));
@@ -82,10 +83,11 @@ public class Running : MonoBehaviour
             {
                 StartCoroutine(Jump());
             }
-            if (seleccionar.correcto == 0 && borrar==0)
+        }
+        if (estado==0){
+            if (Input.GetKeyDown(KeyCode.Space) && !midJump)
             {
-                StartCoroutine(wait());
-                borrar += 1;
+                StartCoroutine(Jump());
             }
         }
     }
@@ -95,22 +97,6 @@ public class Running : MonoBehaviour
         StartCoroutine(MoveToMiddleLaneCoroutine());
     }
 
-    IEnumerator activarMov()
-    {
-        yield return new WaitForSeconds(55f); // Esperar
-        if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
-        {
-            StartCoroutine(ChangeLane(-1));
-        }
-        if (Input.GetKeyDown(KeyCode.D) && !laneChange && currentLane < lanes.Length - 1)
-        {
-            StartCoroutine(ChangeLane(1));
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !midJump)
-        {
-            StartCoroutine(Jump());
-        }
-    }
 
     IEnumerator MoveToMiddleLaneCoroutine()
     {
@@ -123,13 +109,14 @@ public class Running : MonoBehaviour
 
     IEnumerator wait()
     {
-        yield return new WaitForSeconds(55f);
-        if (contador == 5 && cuadros >= 4 && scoreManager.GetCurrentScore() > 2000)
+        yield return new WaitForSeconds(20f);
+        borrar = 0;
+        if (contador == 5 && cuadros >= 4 && scoreManager.GetCurrentScore() > 1800)
         {
             GameFlow.ClearMiddleLane();
             SceneManager.LoadScene(3);
         }
-        else if (contador == 5 && cuadros >= 4 && scoreManager.GetCurrentScore() < 2000)
+        else if (contador == 5 && cuadros >= 4 && scoreManager.GetCurrentScore() < 1800)
         {
             GameFlow.ClearMiddleLane();
             SceneManager.LoadScene(2);
@@ -137,9 +124,8 @@ public class Running : MonoBehaviour
         else
         {
             GameFlow.ClearMiddleLane();
-            Debug.Log("Probando");
         }
-        borrar = 0;
+
     }
 
         IEnumerator Jump()
@@ -190,7 +176,7 @@ public class Running : MonoBehaviour
             camara = 0;
             // Mover el Canvas
             Vector3 newPosition = canvas.transform.position;
-            newPosition.z += 120f;
+            newPosition.z += 40f;
             canvas.transform.position = newPosition;
         }
         if (other.tag == "button2")
@@ -208,7 +194,7 @@ public class Running : MonoBehaviour
             camara = 0;
             // Mover el Canvas
             Vector3 newPosition = canvas.transform.position;
-            newPosition.z += 120f;
+            newPosition.z += 40f;
             canvas.transform.position = newPosition;
         }
         if (other.tag == "dood")
@@ -220,7 +206,7 @@ public class Running : MonoBehaviour
     IEnumerator WaitAndSwitchCameras()
     {
         // Esperar segundos
-        yield return new WaitForSeconds(55f);
+        yield return new WaitForSeconds(16f);
         if (contador == 5 && cuadros >= 4 && scoreManager.GetCurrentScore() > 1800)
         {
             SceneManager.LoadScene(3);
@@ -232,8 +218,24 @@ public class Running : MonoBehaviour
         else
         { // Cambiar cámaras
                 cameraChanger.SwitchCameras();
+                estado=1;
+                if (estado==1){
+                    if (Input.GetKeyDown(KeyCode.A) && !laneChange && currentLane > 0)
+                    {
+                        StartCoroutine(ChangeLane(-1));
+                    }
+                    if (Input.GetKeyDown(KeyCode.D) && !laneChange && currentLane < lanes.Length - 1)
+                    {
+                        StartCoroutine(ChangeLane(1));
+                    }
+                    if (Input.GetKeyDown(KeyCode.Space) && !midJump)
+                    {
+                        StartCoroutine(Jump());
+                    }
+                }
+                seleccionar.correcto=2;
+                MoveCharacterToMiddleLane();
                 GameFlow.ClearMiddleLane();
-
 
         }
 
