@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ganar.unity
     guid: b6b065533883cfa4a94cbbe04dbcbf72
+  - enabled: 1
+    path: Assets/Scenes/Botones.unity
+    guid: 8687c700681e62d41895c16eac25780a
   m_configObjects: {}

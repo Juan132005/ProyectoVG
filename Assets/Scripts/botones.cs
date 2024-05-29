@@ -12,6 +12,10 @@ public class Botones : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void IrABotones()
+    {
+        SceneManager.LoadScene(4);
+    }
 
     public void VolverAEscena1()
     {
