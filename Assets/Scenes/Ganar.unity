@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -523,8 +523,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Volver al inicio
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a12991a144b3b0f469d1ebc733f649c9, type: 2}
+  m_sharedMaterial: {fileID: 6028079428112948921, guid: a12991a144b3b0f469d1ebc733f649c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -634,7 +634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.3178, y: -71.1574}
+  m_AnchoredPosition: {x: -0.0000068545, y: -130}
   m_SizeDelta: {x: 127.8627, y: 26.8632}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139826105
@@ -857,8 +857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000061989, y: 64.9}
-  m_SizeDelta: {x: 246.9869, y: 50}
+  m_AnchoredPosition: {x: 0.0000019073, y: -47}
+  m_SizeDelta: {x: 320.4384, y: 49.557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507127887
 MonoBehaviour:
@@ -882,8 +882,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Has Ganado
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a12991a144b3b0f469d1ebc733f649c9, type: 2}
+  m_sharedMaterial: {fileID: 6028079428112948921, guid: a12991a144b3b0f469d1ebc733f649c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -907,13 +907,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

@@ -17,8 +17,8 @@ public class Botones : MonoBehaviour
         SceneManager.LoadScene(4);
     }
 
-    public void VolverAEscena1()
+    public void IrAEscenaCreditos()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(5);
     }
 }
